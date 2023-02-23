@@ -19,20 +19,17 @@ public class calculadoraServiceImpl implements CalculadoraService {
 			throw new mathOperationException("Please, set a valid operator");
 		}
 		checkOperators(firstOperator, secondOperation);
-		
+
 		switch (operation) {
 		case "sum":
-			return sumOperation(firstOperator, secondOperation);
-			
-		/*case "sub":
-
-			return null;
+			return calculadoraUtil.convertToDouble(firstOperator) + calculadoraUtil.convertToDouble(secondOperation);
+		case "sub":
+			return calculadoraUtil.convertToDouble(firstOperator) - calculadoraUtil.convertToDouble(secondOperation);
 		case "div":
-
-			break;
+			divOperation(calculadoraUtil.convertToDouble(secondOperation));
+			return calculadoraUtil.convertToDouble(firstOperator) / calculadoraUtil.convertToDouble(secondOperation);
 		case "mult":
-
-			return null;*/
+			return calculadoraUtil.convertToDouble(firstOperator) * calculadoraUtil.convertToDouble(secondOperation);
 
 		default:
 			throw new mathOperationException("Please, set a valid operator [sum, sub, div or mult]");
@@ -47,8 +44,12 @@ public class calculadoraServiceImpl implements CalculadoraService {
 		}
 	}
 
-	public Double sumOperation(String firstOperator, String secondOperation) {
-		return calculadoraUtil.convertToDouble(firstOperator) + calculadoraUtil.convertToDouble(secondOperation);
+	public void divOperation(Double secondOperation) {
+		log.info("calculadoraService: divOperation");
+		if (secondOperation < 0) {
+			throw new mathOperationException(
+					"Please, check that the second operator is greater than zero to perform the division");
+		}
 	}
 
 }
