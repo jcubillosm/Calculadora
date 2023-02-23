@@ -18,12 +18,14 @@ import lombok.extern.slf4j.Slf4j;
 public class CalculadoraController {
 	@Autowired
 	CalculadoraService calculadoraService;
-	
-	@Operation(summary = "Operación suma")
-    @GetMapping("/sum/{firstOperator}/{secondOperator}")
-    public Double  sumOperation(@Parameter(description = "Primer operador")  @PathVariable String firstOperator , @Parameter(description = "Segundo operador")  @PathVariable String secondOperator ) {
-		log.info("CalculadoraController: sumOperation");
-        return calculadoraService.sumOperation(firstOperator, secondOperator);
-    }
+
+	@Operation(summary = "Calculadora")
+	@GetMapping("/{operation}/{firstOperator}/{secondOperator}")
+	public Double operationControl(@Parameter(description = "Operación seleccionada") @PathVariable String operation,
+			@Parameter(description = "Primer operador") @PathVariable String firstOperator,
+			@Parameter(description = "Segundo operador") @PathVariable String secondOperator) {
+		log.info("CalculadoraController: operationControl");
+		return calculadoraService.operationControl(operation, firstOperator, secondOperator);
+	}
 
 }
