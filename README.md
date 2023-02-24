@@ -49,7 +49,8 @@ mvn install:install-file -Dfile=lib/tracer-1.0.0.jar -DgroupId=com.tracer -Darti
 mvn spring-boot:run
 ```
 
-4. Abrir un navegador y lanzar una consulta que tenga la estructura: http://localhost:8080/calculadora/{operacion}/{primer_operador}/{segundo_operador}
+4. Abrir un navegador y lanzar una consulta que tenga la estructura: http://localhost:8080/calculadora/{operacion}/{primer_operador}/{segundo_operador}.
+
 Las operaciones disponibles {operacion} son: sum, sub, mult, div.
 La api acepta números enteros y decimales, {primer_operador} y {segundo_operador}
 
